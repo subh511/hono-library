@@ -26,9 +26,9 @@ async function authMiddleware(c:any,next:any){
     return c.text("You dont have access")
   }
 }
-app.use(authMiddleware)
+//app.use(authMiddleware)
 
-app.post('/', async (c) => {
+app.post('/',authMiddleware, async (c) => {
   const body = await c.req.json()
   console.log(body);
   console.log(c.req.header("Authorization"));
